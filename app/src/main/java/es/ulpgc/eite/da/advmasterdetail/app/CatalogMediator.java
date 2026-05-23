@@ -1,87 +1,64 @@
 package es.ulpgc.eite.da.advmasterdetail.app;
 
-import es.ulpgc.eite.da.advmasterdetail.categories.CategoryListState;
-import es.ulpgc.eite.da.advmasterdetail.data.CategoryItem;
-import es.ulpgc.eite.da.advmasterdetail.data.ProductItem;
-import es.ulpgc.eite.da.advmasterdetail.product.ProductDetailState;
-import es.ulpgc.eite.da.advmasterdetail.products.ProductListState;
+import es.ulpgc.eite.da.advmasterdetail.data.MovieEntity;
+import es.ulpgc.eite.da.advmasterdetail.data.SerieEntity;
+import es.ulpgc.eite.da.advmasterdetail.data.UserEntity;
+import es.ulpgc.eite.da.advmasterdetail.movies.MovieListState;
+import es.ulpgc.eite.da.advmasterdetail.moviedetail.MovieDetailState;
+import es.ulpgc.eite.da.advmasterdetail.series.SerieListState;
+import es.ulpgc.eite.da.advmasterdetail.seriedetail.SerieDetailState;
+import es.ulpgc.eite.da.advmasterdetail.login.LoginState;
+import es.ulpgc.eite.da.advmasterdetail.register.RegisterState;
 
 public class CatalogMediator {
 
-//  private CategoryListState categoryListState = new CategoryListState();
-//  private ProductListState productListState = new ProductListState();
-//  private ProductDetailState productDetailState = new ProductDetailState();
+  private MovieListState movieListState;
+  private MovieDetailState movieDetailState;
+  private SerieListState serieListState;
+  private SerieDetailState serieDetailState;
+  private LoginState loginState;
+  private RegisterState registerState;
 
-  private CategoryListState categoryListState;
-  private ProductListState productListState;
-  private ProductDetailState productDetailState;
-  private CategoryItem category;
-  private ProductItem product;
-
+  private MovieEntity movie;
+  private SerieEntity serie;
+  private UserEntity user;
 
   private static CatalogMediator INSTANCE;
 
-  private CatalogMediator() {
-
-  }
+  private CatalogMediator() {}
 
   public static void resetInstance() {
     INSTANCE = null;
   }
 
-
   public static CatalogMediator getInstance() {
     if(INSTANCE == null){
       INSTANCE = new CatalogMediator();
     }
-
     return INSTANCE;
   }
 
+  // Movie getters/setters
+  public MovieListState getMovieListState() { return movieListState; }
+  public void setMovieListState(MovieListState state) { this.movieListState = state; }
+  public MovieDetailState getMovieDetailState() { return movieDetailState; }
+  public void setMovieDetailState(MovieDetailState state) { this.movieDetailState = state; }
+  public MovieEntity getMovie() { return movie; }
+  public void setMovie(MovieEntity item) { this.movie = item; }
 
-  public CategoryListState getCategoryListState() {
-    return categoryListState;
-  }
+  // Serie getters/setters
+  public SerieListState getSerieListState() { return serieListState; }
+  public void setSerieListState(SerieListState state) { this.serieListState = state; }
+  public SerieDetailState getSerieDetailState() { return serieDetailState; }
+  public void setSerieDetailState(SerieDetailState state) { this.serieDetailState = state; }
+  public SerieEntity getSerie() { return serie; }
+  public void setSerie(SerieEntity item) { this.serie = item; }
 
-  public ProductDetailState getProductDetailState() {
-    return productDetailState;
-  }
-
-  public ProductListState getProductListState() {
-    return productListState;
-  }
-
-  public ProductItem getProduct() {
-    ProductItem item = product;
-    //product = null;
-    return item;
-  }
-
-
-  public void setProduct(ProductItem item) {
-    product = item;
-  }
-
-  public void setCategory(CategoryItem item) {
-    category = item;
-  }
-
-  public CategoryItem getCategory() {
-    CategoryItem item = category;
-    //category = null;
-    return item;
-  }
-
-  public void setCategoryListState(CategoryListState state) {
-    categoryListState = state;
-  }
-
-  public void setProductListState(ProductListState state) {
-    productListState=state;
-
-  }
-
-  public void setProductDetailState(ProductDetailState state) {
-    productDetailState=state;
-  }
+  // User and Auth getters/setters
+  public UserEntity getUser() { return user; }
+  public void setUser(UserEntity user) { this.user = user; }
+  public LoginState getLoginState() { return loginState; }
+  public void setLoginState(LoginState state) { this.loginState = state; }
+  public RegisterState getRegisterState() { return registerState; }
+  public void setRegisterState(RegisterState state) { this.registerState = state; }
 }

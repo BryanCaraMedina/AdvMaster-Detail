@@ -4,65 +4,53 @@ import java.util.List;
 
 public interface RepositoryContract {
 
-  interface FetchCatalogDataCallback {
-    void onCatalogDataFetched(boolean error);
-  }
+    interface GetMovieListCallback {
+        void setMovieList(List<MovieEntity> movies);
+    }
 
-  interface GetProductListCallback {
-    void setProductList(List<ProductItem> products);
-  }
+    interface GetMovieCallback {
+        void setMovie(MovieEntity movie);
+    }
 
-  interface GetProductCallback {
-    void setProduct(ProductItem product);
-  }
+    interface GetSerieListCallback {
+        void setSerieList(List<SerieEntity> series);
+    }
 
-  interface GetCategoryListCallback {
-    void setCategoryList(List<CategoryItem> categories);
-  }
+    interface GetSerieCallback {
+        void setSerie(SerieEntity serie);
+    }
 
-  interface GetCategoryCallback {
-    void setCategory(CategoryItem category);
-  }
+    interface LoginCallback {
+        void onLoginResult(boolean success, UserEntity user);
+    }
 
-  interface DeleteCategoryCallback {
-    void onCategoryDeleted();
-  }
+    interface RegisterCallback {
+        void onRegisterResult(boolean success);
+    }
 
-  interface UpdateCategoryCallback {
-    void onCategoryUpdated();
-  }
+    interface ActionCallback {
+        void onSuccess();
+        void onError(String message);
+    }
 
-  interface DeleteProductCallback {
-    void onProductDeleted();
-  }
+    interface FavoriteCheckCallback {
+        void onFavoriteChecked(boolean isFavorite);
+    }
 
-  interface UpdateProductCallback {
-    void onProductUpdated();
-  }
+    void getMovieList(GetMovieListCallback callback);
+    void getMovie(int id, GetMovieCallback callback);
+    void getSerieList(GetSerieListCallback callback);
+    void getSerie(int id, GetSerieCallback callback);
+    
+    void login(String username, String password, LoginCallback callback);
+    void register(UserEntity user, RegisterCallback callback);
+    
+    // Favoritos
+    void getFavoriteMovies(int userId, GetMovieListCallback callback);
+    void toggleMovieFavorite(int userId, int movieId, ActionCallback callback);
+    void isMovieFavorite(int userId, int movieId, FavoriteCheckCallback callback);
 
-
-  void loadCatalog(
-      boolean clearFirst, CatalogRepository.FetchCatalogDataCallback callback);
-
-  void getProductList(
-      CategoryItem category, CatalogRepository.GetProductListCallback callback);
-
-  void getProductList(
-      int categoryId, CatalogRepository.GetProductListCallback callback);
-
-  void getProduct(int id, CatalogRepository.GetProductCallback callback);
-  void getCategory(int id, CatalogRepository.GetCategoryCallback callback);
-  void getCategoryList(CatalogRepository.GetCategoryListCallback callback);
-
-  void deleteProduct(
-      ProductItem product, CatalogRepository.DeleteProductCallback callback);
-
-  void updateProduct(
-      ProductItem product, CatalogRepository.UpdateProductCallback callback);
-
-  void deleteCategory(
-      CategoryItem category, CatalogRepository.DeleteCategoryCallback callback);
-
-  void updateCategory(
-      CategoryItem category, CatalogRepository.UpdateCategoryCallback callback);
+    void getFavoriteSeries(int userId, GetSerieListCallback callback);
+    void toggleSerieFavorite(int userId, int serieId, ActionCallback callback);
+    void isSerieFavorite(int userId, int serieId, FavoriteCheckCallback callback);
 }
