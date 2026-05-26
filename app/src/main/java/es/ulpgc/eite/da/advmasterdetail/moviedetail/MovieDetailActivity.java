@@ -20,6 +20,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+        setTitle(R.string.title_movie_detail);
 
         titleView = findViewById(R.id.movie_title);
         descriptionView = findViewById(R.id.movie_description);
@@ -54,13 +55,12 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
                     Glide.with(this).load(viewModel.movie.imageUrl).into(imageView);
                 }
 
-                // Show/Hide favorite button based on login status
                 if (viewModel.showFavoriteButton) {
                     favoriteButton.setVisibility(View.VISIBLE);
                     if (viewModel.isFavorite) {
-                        favoriteButton.setText("Remove from Favorites");
+                        favoriteButton.setText(R.string.btn_remove_favorite);
                     } else {
-                        favoriteButton.setText("Mark as Favorite");
+                        favoriteButton.setText(R.string.btn_add_favorite);
                     }
                 } else {
                     favoriteButton.setVisibility(View.GONE);

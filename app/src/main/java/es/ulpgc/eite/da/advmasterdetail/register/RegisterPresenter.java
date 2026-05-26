@@ -23,6 +23,9 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     @Override
     public void onRecreateCalled() {
         state = mediator.getRegisterState();
+        if (state == null) {
+            state = new RegisterState();
+        }
     }
 
     @Override
@@ -32,8 +35,15 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
     @Override
     public void onRegisterButtonClicked(String username, String password) {
-        if (username.isEmpty() || password.isEmpty()) {
+        // Validation: Empty fields
+        if (username.trim().isEmpty() || password.trim().isEmpty()) {
             view.get().showErrorMessage("Please fill all fields");
+            return;
+        }
+
+        // Validation: Password length
+        if (password.length() < 4) {
+            view.get().showErrorMessage("Password must be at least 4 characters long");
             return;
         }
 
@@ -44,7 +54,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
                     view.get().showSuccessMessage("Registration successful");
                     view.get().navigateToLoginScreen();
                 } else {
-                    view.get().showErrorMessage("Registration failed");
+                    view.get().showErrorMessage("Registration failed. Username might already exist.");
                 }
             }
         });

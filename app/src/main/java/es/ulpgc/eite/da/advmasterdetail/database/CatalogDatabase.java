@@ -36,4 +36,8 @@ public abstract class CatalogDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    public static void setTestInstance(CatalogDatabase database) {
+        INSTANCE = database;
+    }
 }

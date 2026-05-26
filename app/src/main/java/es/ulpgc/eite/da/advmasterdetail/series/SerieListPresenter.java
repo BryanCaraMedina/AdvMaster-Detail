@@ -2,6 +2,7 @@ package es.ulpgc.eite.da.advmasterdetail.series;
 
 import java.lang.ref.WeakReference;
 import es.ulpgc.eite.da.advmasterdetail.app.CatalogMediator;
+import es.ulpgc.eite.da.advmasterdetail.app.SessionManager;
 import es.ulpgc.eite.da.advmasterdetail.data.SerieEntity;
 import es.ulpgc.eite.da.advmasterdetail.data.UserEntity;
 
@@ -11,9 +12,11 @@ public class SerieListPresenter implements SerieListContract.Presenter {
     private SerieListState state;
     private SerieListContract.Model model;
     private CatalogMediator mediator;
+    private SessionManager sessionManager;
 
-    public SerieListPresenter(CatalogMediator mediator) {
+    public SerieListPresenter(CatalogMediator mediator, SessionManager sessionManager) {
         this.mediator = mediator;
+        this.sessionManager = sessionManager;
     }
 
     @Override
@@ -24,6 +27,9 @@ public class SerieListPresenter implements SerieListContract.Presenter {
     @Override
     public void onRecreateCalled() {
         state = mediator.getSerieListState();
+        if (state == null) {
+            state = new SerieListState();
+        }
     }
 
     @Override
@@ -64,6 +70,7 @@ public class SerieListPresenter implements SerieListContract.Presenter {
     @Override
     public void onLogoutMenuClicked() {
         mediator.setUser(null);
+        sessionManager.logout();
         view.get().navigateToLoginScreen();
     }
 

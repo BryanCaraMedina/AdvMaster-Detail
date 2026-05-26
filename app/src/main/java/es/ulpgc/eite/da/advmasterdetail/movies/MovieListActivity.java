@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,12 +19,14 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
 
     private MovieListContract.Presenter presenter;
     private MovieListAdapter listAdapter;
+    private TextView emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
-        setTitle("Movies");
+        
+        emptyView = findViewById(R.id.movie_empty_view);
 
         MovieListScreen.configure(this);
 
@@ -82,7 +86,20 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
 
     @Override
     public void displayMovieListData(MovieListViewModel viewModel) {
-        runOnUiThread(() -> listAdapter.setItems(viewModel.movies));
+        runOnUiThread(() -> {
+            listAdapter.setItems(viewModel.movies);
+            
+            if (viewModel.movies == null || viewModel.movies.isEmpty()) {
+                emptyView.setVisibility(View.VISIBLE);
+                if (viewModel.showingFavorites) {
+                    emptyView.setText(R.string.msg_no_favorites);
+                } else {
+                    emptyView.setText(R.string.msg_no_data);
+                }
+            } else {
+                emptyView.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -107,9 +124,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
     @Override
     public void updateToolbarTitle(boolean showingFavorites) {
         if (showingFavorites) {
-            setTitle("Favorite Movies");
+            setTitle(R.string.title_favorite_movies);
         } else {
-            setTitle("Movies");
+            setTitle(R.string.title_movies);
         }
     }
 

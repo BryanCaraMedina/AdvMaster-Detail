@@ -1,10 +1,40 @@
 <resources>
-    <string name="app_name">Adv Master-Detail</string>
+    <string name="app_name">Movie &amp; Serie App</string>
 
-    <string name="title_category_list">Category List</string>
-    <string name="title_category_detail">Category Detail</string>
-    <string name="title_product_list">Products</string>
-    <string name="title_product_detail">Product Detail</string>
-    <string name="item_content">Item Content</string>
-    <string name="item_details">Item Details</string>
+    <!-- Navigation / Titles -->
+    <string name="title_movies">Movies</string>
+    <string name="title_series">Series</string>
+    <string name="title_favorite_movies">Favorite Movies</string>
+    <string name="title_favorite_series">Favorite Series</string>
+    <string name="title_movie_detail">Movie Detail</string>
+    <string name="title_serie_detail">Serie Detail</string>
+    <string name="title_login">Login</string>
+    <string name="title_register">Register</string>
+
+    <!-- Login / Register -->
+    <string name="label_username">Username</string>
+    <string name="label_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Create Account</string>
+    <string name="btn_go_to_register">Don\'t have an account? Register</string>
+    <string name="btn_go_to_login">Already have an account? Login</string>
+    <string name="btn_skip_login">Skip Login</string>
+
+    <!-- Messages -->
+    <string name="error_login_failed">Login failed. Check username and password.</string>
+    <string name="error_fields_empty">Please fill all fields</string>
+    <string name="error_password_short">Password must be at least 4 characters long</string>
+    <string name="msg_register_success">Registration successful</string>
+    <string name="msg_no_favorites">You haven\'t added any favorites yet.</string>
+    <string name="msg_no_data">No data available.</string>
+
+    <!-- Detail -->
+    <string name="btn_add_favorite">Mark as Favorite</string>
+    <string name="btn_remove_favorite">Remove from Favorites</string>
+
+    <!-- Menu -->
+    <string name="menu_favorites">Favorites</string>
+    <string name="menu_movies">Movies</string>
+    <string name="menu_series">Series</string>
+    <string name="menu_logout">Logout</string>
 </resources>

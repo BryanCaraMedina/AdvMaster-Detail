@@ -3,6 +3,7 @@ package es.ulpgc.eite.da.advmasterdetail.series;
 import androidx.fragment.app.FragmentActivity;
 import java.lang.ref.WeakReference;
 import es.ulpgc.eite.da.advmasterdetail.app.CatalogMediator;
+import es.ulpgc.eite.da.advmasterdetail.app.SessionManager;
 import es.ulpgc.eite.da.advmasterdetail.data.CatalogRepository;
 import es.ulpgc.eite.da.advmasterdetail.data.RepositoryContract;
 
@@ -14,7 +15,9 @@ public class SerieListScreen {
                 new WeakReference<>((FragmentActivity) view);
 
         CatalogMediator mediator = CatalogMediator.getInstance();
-        SerieListContract.Presenter presenter = new SerieListPresenter(mediator);
+        SessionManager sessionManager = new SessionManager(context.get());
+
+        SerieListContract.Presenter presenter = new SerieListPresenter(mediator, sessionManager);
 
         RepositoryContract repository = CatalogRepository.getInstance(context.get());
         SerieListContract.Model model = new SerieListModel(repository);

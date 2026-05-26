@@ -20,6 +20,7 @@ public class SerieDetailActivity extends AppCompatActivity implements SerieDetai
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serie_detail);
+        setTitle(R.string.title_serie_detail);
 
         titleView = findViewById(R.id.serie_title);
         descriptionView = findViewById(R.id.serie_description);
@@ -54,13 +55,12 @@ public class SerieDetailActivity extends AppCompatActivity implements SerieDetai
                     Glide.with(this).load(viewModel.serie.imageUrl).into(imageView);
                 }
 
-                // Show/Hide favorite button based on login status
                 if (viewModel.showFavoriteButton) {
                     favoriteButton.setVisibility(View.VISIBLE);
                     if (viewModel.isFavorite) {
-                        favoriteButton.setText("Remove from Favorites");
+                        favoriteButton.setText(R.string.btn_remove_favorite);
                     } else {
-                        favoriteButton.setText("Mark as Favorite");
+                        favoriteButton.setText(R.string.btn_add_favorite);
                     }
                 } else {
                     favoriteButton.setVisibility(View.GONE);

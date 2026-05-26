@@ -2,6 +2,7 @@ package es.ulpgc.eite.da.advmasterdetail.movies;
 
 import java.lang.ref.WeakReference;
 import es.ulpgc.eite.da.advmasterdetail.app.CatalogMediator;
+import es.ulpgc.eite.da.advmasterdetail.app.SessionManager;
 import es.ulpgc.eite.da.advmasterdetail.data.MovieEntity;
 import es.ulpgc.eite.da.advmasterdetail.data.UserEntity;
 
@@ -11,9 +12,11 @@ public class MovieListPresenter implements MovieListContract.Presenter {
     private MovieListState state;
     private MovieListContract.Model model;
     private CatalogMediator mediator;
+    private SessionManager sessionManager;
 
-    public MovieListPresenter(CatalogMediator mediator) {
+    public MovieListPresenter(CatalogMediator mediator, SessionManager sessionManager) {
         this.mediator = mediator;
+        this.sessionManager = sessionManager;
     }
 
     @Override
@@ -24,6 +27,9 @@ public class MovieListPresenter implements MovieListContract.Presenter {
     @Override
     public void onRecreateCalled() {
         state = mediator.getMovieListState();
+        if (state == null) {
+            state = new MovieListState();
+        }
     }
 
     @Override
@@ -64,6 +70,7 @@ public class MovieListPresenter implements MovieListContract.Presenter {
     @Override
     public void onLogoutMenuClicked() {
         mediator.setUser(null);
+        sessionManager.logout();
         view.get().navigateToLoginScreen();
     }
 

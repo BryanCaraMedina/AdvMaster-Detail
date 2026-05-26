@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,12 +19,14 @@ public class SerieListActivity extends AppCompatActivity implements SerieListCon
 
     private SerieListContract.Presenter presenter;
     private SerieListAdapter listAdapter;
+    private TextView emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serie_list);
-        setTitle("Series");
+        
+        emptyView = findViewById(R.id.serie_empty_view);
 
         SerieListScreen.configure(this);
 
@@ -82,7 +86,20 @@ public class SerieListActivity extends AppCompatActivity implements SerieListCon
 
     @Override
     public void displaySerieListData(SerieListViewModel viewModel) {
-        runOnUiThread(() -> listAdapter.setItems(viewModel.series));
+        runOnUiThread(() -> {
+            listAdapter.setItems(viewModel.series);
+
+            if (viewModel.series == null || viewModel.series.isEmpty()) {
+                emptyView.setVisibility(View.VISIBLE);
+                if (viewModel.showingFavorites) {
+                    emptyView.setText(R.string.msg_no_favorites);
+                } else {
+                    emptyView.setText(R.string.msg_no_data);
+                }
+            } else {
+                emptyView.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -107,9 +124,9 @@ public class SerieListActivity extends AppCompatActivity implements SerieListCon
     @Override
     public void updateToolbarTitle(boolean showingFavorites) {
         if (showingFavorites) {
-            setTitle("Favorite Series");
+            setTitle(R.string.title_favorite_series);
         } else {
-            setTitle("Series");
+            setTitle(R.string.title_series);
         }
     }
 

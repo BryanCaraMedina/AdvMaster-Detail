@@ -2,6 +2,7 @@ package es.ulpgc.eite.da.advmasterdetail.login;
 
 import java.lang.ref.WeakReference;
 import es.ulpgc.eite.da.advmasterdetail.app.CatalogMediator;
+import es.ulpgc.eite.da.advmasterdetail.app.SessionManager;
 import es.ulpgc.eite.da.advmasterdetail.data.RepositoryContract;
 import es.ulpgc.eite.da.advmasterdetail.data.UserEntity;
 
@@ -11,14 +12,24 @@ public class LoginPresenter implements LoginContract.Presenter {
     private LoginState state;
     private LoginContract.Model model;
     private CatalogMediator mediator;
+    private SessionManager sessionManager;
 
-    public LoginPresenter(CatalogMediator mediator) {
+    public LoginPresenter(CatalogMediator mediator, SessionManager sessionManager) {
         this.mediator = mediator;
+        this.sessionManager = sessionManager;
     }
 
     @Override
     public void onCreateCalled() {
         state = new LoginState();
+        
+        // Auto-login if session exists
+        if (sessionManager.isLoggedIn()) {
+            UserEntity user = new UserEntity(sessionManager.getUsername(), "");
+            user.id = sessionManager.getUserId();
+            mediator.setUser(user);
+            view.get().navigateToMovieListScreen();
+        }
     }
 
     @Override
@@ -36,7 +47,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void onLoginButtonClicked(String username, String password) {
-        if (username.isEmpty() || password.isEmpty()) {
+        if (username.trim().isEmpty() || password.trim().isEmpty()) {
             view.get().showErrorMessage("Please enter username and password");
             return;
         }
@@ -45,6 +56,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             @Override
             public void onLoginResult(boolean success, UserEntity user) {
                 if (success) {
+                    sessionManager.createSession(user.id, user.username);
                     mediator.setUser(user);
                     view.get().navigateToMovieListScreen();
                 } else {
@@ -61,7 +73,8 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void onSkipLoginButtonClicked() {
-        mediator.setUser(null); // Ensure no user is logged in
+        mediator.setUser(null);
+        sessionManager.logout();
         view.get().navigateToMovieListScreen();
     }
 
