@@ -30,25 +30,25 @@
       "id": 101,
       "title": "Stranger Things",
       "description": "Un niño desaparece y sus amigos descubren un misterio que involucra experimentos secretos.",
-      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMjE4NjA1NTEyM15BMl5BanBnXkFtZTgwNzYwNjM5NzE@._V1_.jpg"
+      "imageUrl": "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg"
     },
     {
       "id": 102,
       "title": "Breaking Bad",
       "description": "Un profesor de química comienza a cocinar metanfetamina para asegurar el futuro de su familia.",
-      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTNjM2Y2NDQtZDgxMi00M2QzLTg2N2ItNmIzMDliZWM1OTdkXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+      "imageUrl": "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg"
     },
     {
       "id": 3,
       "title": "Game of Thrones",
       "description": "Familias nobles luchan por el control de los Siete Reinos.",
-      "imageUrl": "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGIwMi00MWNmLThlMDItZjk1Y2Y2N2I0YzA2XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+      "imageUrl": "https://image.tmdb.org/t/p/w500/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg"
     },
     {
       "id": 8,
-      "title": "Better Call Saul",
-      "description": "La evolución del abogado Jimmy McGill antes de convertirse en Saul Goodman.",
-      "imageUrl": "https://m.media-amazon.com/images/M/MV5BZDA4YmUyN2EtN2U5OS00NWUxLWEyNWVjN2EwZDQxNjU5ZDQyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+      "title": "Cobra Kai",
+      "description": "Décadas tras su pelea en el torneo de karate de All Valley de 1984, un Daniel LaRusso y un Johnny Lawrence de mediana edad se enfrentan de nuevo como rivales de artes marciales.",
+      "imageUrl": "https://www.themoviedb.org/t/p/w600_and_h900_face/imfqLcv6oHNn6bDdEUUUlxy0Ch9.jpg"
     }
   ]
 }

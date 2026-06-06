@@ -17,7 +17,7 @@ import es.ulpgc.eite.da.advmasterdetail.data.UserSerieCrossRef;
     UserEntity.class,
     UserMovieCrossRef.class,
     UserSerieCrossRef.class
-}, version = 7000, exportSchema = false)
+}, version = 7015, exportSchema = false)
 public abstract class CatalogDatabase extends RoomDatabase {
 
     private static CatalogDatabase INSTANCE;

@@ -68,6 +68,10 @@ public class CatalogRepository implements RepositoryContract {
                 loadInitialData();
                 series = database.serieDao().getSeries();
             }
+            // ← AÑADE ESTO
+            for (SerieEntity s : series) {
+                Log.d("DEBUG_SERIE", "titulo=" + s.title + " | imageUrl=" + s.imageUrl);
+            }
             callback.setSerieList(series);
         });
     }
