@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -148,6 +149,11 @@ public class SerieListActivity extends AppCompatActivity implements SerieListCon
         } else {
             setTitle(R.string.title_series);
         }
+    }
+
+    @Override
+    public void showUserRequiredMessage() {
+        Toast.makeText(this, R.string.msg_user_required, Toast.LENGTH_SHORT).show();
     }
 
     @Override

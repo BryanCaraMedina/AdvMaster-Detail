@@ -57,7 +57,10 @@ public class MovieListPresenter implements MovieListContract.Presenter {
 
     @Override
     public void toggleFavoritesFilter() {
-        if (mediator.getUser() == null) return;
+        if (mediator.getUser() == null) {
+            view.get().showUserRequiredMessage();
+            return;
+        }
         state.showingFavorites = !state.showingFavorites;
         fetchMovieListData();
     }

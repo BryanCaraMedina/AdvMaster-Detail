@@ -45,6 +45,11 @@ public interface MovieListContract {
          * @param showingFavorites True if only favorites are shown, false otherwise.
          */
         void updateToolbarTitle(boolean showingFavorites);
+
+        /**
+         * Shows a message indicating that a user account is required.
+         */
+        void showUserRequiredMessage();
     }
 
     /**

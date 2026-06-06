@@ -45,6 +45,11 @@ public interface SerieListContract {
          * @param showingFavorites True if only favorites are shown.
          */
         void updateToolbarTitle(boolean showingFavorites);
+
+        /**
+         * Shows a message indicating that a user account is required.
+         */
+        void showUserRequiredMessage();
     }
 
     /**

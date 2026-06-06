@@ -27,6 +27,7 @@
     <string name="msg_register_success">Registro completado con éxito</string>
     <string name="msg_no_favorites">Aún no has añadido favoritos.</string>
     <string name="msg_no_data">No hay datos disponibles.</string>
+    <string name="msg_user_required">Esta opción solo está disponible para usuarios registrados</string>
 
     <!-- Detalle -->
     <string name="btn_add_favorite">Añadir a Favoritos</string>
