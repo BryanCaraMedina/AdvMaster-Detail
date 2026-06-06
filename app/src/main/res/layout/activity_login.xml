@@ -5,58 +5,94 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:background="#FFFFFF">
+    android:background="@drawable/app_background">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Movie &amp; Serie App"
+        android:text="@string/app_name"
         android:textSize="28sp"
-        android:textColor="#673AB7"
+        android:textColor="#1A237E"
         android:textStyle="bold"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="24dp"/>
 
     <EditText
         android:id="@+id/login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:hint="@string/label_username"
         android:textColor="#000000"
+        android:textColorHint="#666666"
         android:inputType="text"/>
 
     <EditText
         android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/label_password"
         android:textColor="#000000"
+        android:textColorHint="#666666"
         android:inputType="textPassword"
         android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Qué quieres ver?"
+        android:textColor="#1A237E"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"/>
+
+    <RadioGroup
+        android:id="@+id/login_option_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <RadioButton
+            android:id="@+id/radio_movies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_movies"
+            android:textColor="#1A237E"
+            android:buttonTint="#1A237E"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/radio_series"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:buttonTint="#1A237E"
+            android:text="@string/title_series"
+            android:textColor="#1A237E"/>
+    </RadioGroup>
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:backgroundTint="#673AB7"
-        android:layout_marginTop="24dp"/>
+        android:text="@string/btn_login"
+        android:backgroundTint="#1A237E"
+        android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/go_to_register_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DON'T HAVE AN ACCOUNT? REGISTER"
-        android:textColor="#673AB7"
+        android:text="@string/btn_go_to_register"
+        android:textColor="#1A237E"
         style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="4dp"/>
 
     <Button
         android:id="@+id/skip_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SKIP LOGIN"
-        android:textColor="#757575"
+        android:text="@string/btn_skip_login"
+        android:textColor="#666666"
         style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="4dp"/>
 
 </LinearLayout>

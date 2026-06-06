@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +22,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
     private MovieListContract.Presenter presenter;
     private MovieListAdapter listAdapter;
     private TextView emptyView;
+    private Button btnSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
         setContentView(R.layout.activity_movie_list);
         
         emptyView = findViewById(R.id.movie_empty_view);
+        btnSwitch = findViewById(R.id.btn_switch_to_series);
+
+        btnSwitch.setOnClickListener(v -> presenter.onSerieListMenuClicked());
 
         MovieListScreen.configure(this);
 
@@ -37,6 +43,22 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
         } else {
             presenter.onRecreateCalled();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        showExitDialog();
+    }
+
+    private void showExitDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.dialog_exit_title)
+                .setMessage(R.string.dialog_exit_message)
+                .setPositiveButton(R.string.dialog_yes, (dialog, which) -> {
+                    finishAffinity(); // Cierra todas las actividades y sale de la app
+                })
+                .setNegativeButton(R.string.dialog_no, null)
+                .show();
     }
 
     @Override
@@ -67,9 +89,6 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
         int id = item.getItemId();
         if (id == R.id.action_toggle_favorites) {
             presenter.toggleFavoritesFilter();
-            return true;
-        } else if (id == R.id.action_go_to_series) {
-            presenter.onSerieListMenuClicked();
             return true;
         } else if (id == R.id.action_logout) {
             presenter.onLogoutMenuClicked();
@@ -112,6 +131,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
     public void navigateToSerieListScreen() {
         Intent intent = new Intent(this, SerieListActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package es.ulpgc.eite.da.advmasterdetail.data;
 
 import android.content.Context;
+import android.util.Log;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +42,9 @@ public class CatalogRepository implements RepositoryContract {
     public void getMovieList(GetMovieListCallback callback) {
         executor.execute(() -> {
             List<MovieEntity> movies = database.movieDao().getMovies();
+            // Force reload if empty or if we want to ensure fresh data
             if (movies.isEmpty()) {
+                Log.d("CatalogRepository", "No movies found, loading initial data...");
                 loadInitialData();
                 movies = database.movieDao().getMovies();
             }
@@ -89,10 +92,13 @@ public class CatalogRepository implements RepositoryContract {
             Gson gson = new Gson();
             CatalogData data = gson.fromJson(json, CatalogData.class);
 
-            database.movieDao().insertMovies(data.movies);
-            database.serieDao().insertSeries(data.series);
+            if (data != null) {
+                if (data.movies != null) database.movieDao().insertMovies(data.movies);
+                if (data.series != null) database.serieDao().insertSeries(data.series);
+                Log.d("CatalogRepository", "Data loaded successfully from catalog.json");
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("CatalogRepository", "Error loading initial data", e);
         }
     }
 

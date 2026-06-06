@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,8 +20,9 @@
             <ImageView
                 android:id="@+id/serie_image"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop"
+                android:layout_height="350dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/title_series"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
@@ -29,6 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColor="#1A237E"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 tools:text="Serie Title" />
 
@@ -37,15 +41,19 @@
                 style="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
+                android:textColor="#333333"
+                android:textSize="16sp"
                 tools:text="Serie description goes here..." />
 
             <Button
                 android:id="@+id/favorite_button"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Mark as Favorite" />
+                android:backgroundTint="#1A237E"
+                android:textColor="#FFFFFF"
+                android:text="@string/btn_add_favorite" />
 
         </LinearLayout>
     </ScrollView>

@@ -1,40 +1,46 @@
 <resources>
-    <string name="app_name">Movie &amp; Serie App</string>
+    <string name="app_name">App de Pelis y Series</string>
 
-    <!-- Navigation / Titles -->
-    <string name="title_movies">Movies</string>
+    <!-- Navegación / Títulos -->
+    <string name="title_movies">Películas</string>
     <string name="title_series">Series</string>
-    <string name="title_favorite_movies">Favorite Movies</string>
-    <string name="title_favorite_series">Favorite Series</string>
-    <string name="title_movie_detail">Movie Detail</string>
-    <string name="title_serie_detail">Serie Detail</string>
-    <string name="title_login">Login</string>
-    <string name="title_register">Register</string>
+    <string name="title_favorite_movies">Películas Favoritas</string>
+    <string name="title_favorite_series">Series Favoritas</string>
+    <string name="title_movie_detail">Detalle de la Película</string>
+    <string name="title_serie_detail">Detalle de la Serie</string>
+    <string name="title_login">Iniciar Sesión</string>
+    <string name="title_register">Registro</string>
 
-    <!-- Login / Register -->
-    <string name="label_username">Username</string>
-    <string name="label_password">Password</string>
-    <string name="btn_login">Login</string>
-    <string name="btn_register">Create Account</string>
-    <string name="btn_go_to_register">Don\'t have an account? Register</string>
-    <string name="btn_go_to_login">Already have an account? Login</string>
-    <string name="btn_skip_login">Skip Login</string>
+    <!-- Login / Registro -->
+    <string name="label_username">Usuario</string>
+    <string name="label_password">Contraseña</string>
+    <string name="btn_login">Entrar</string>
+    <string name="btn_register">Crear Cuenta</string>
+    <string name="btn_go_to_register">¿No tienes cuenta? Regístrate</string>
+    <string name="btn_go_to_login">¿Ya tienes cuenta? Inicia sesión</string>
+    <string name="btn_skip_login">Omitir Login</string>
 
-    <!-- Messages -->
-    <string name="error_login_failed">Login failed. Check username and password.</string>
-    <string name="error_fields_empty">Please fill all fields</string>
-    <string name="error_password_short">Password must be at least 4 characters long</string>
-    <string name="msg_register_success">Registration successful</string>
-    <string name="msg_no_favorites">You haven\'t added any favorites yet.</string>
-    <string name="msg_no_data">No data available.</string>
+    <!-- Mensajes -->
+    <string name="error_login_failed">Error al iniciar sesión. Revisa usuario y contraseña.</string>
+    <string name="error_fields_empty">Por favor, rellena todos los campos</string>
+    <string name="error_password_short">La contraseña debe tener al menos 4 caracteres</string>
+    <string name="msg_register_success">Registro completado con éxito</string>
+    <string name="msg_no_favorites">Aún no has añadido favoritos.</string>
+    <string name="msg_no_data">No hay datos disponibles.</string>
 
-    <!-- Detail -->
-    <string name="btn_add_favorite">Mark as Favorite</string>
-    <string name="btn_remove_favorite">Remove from Favorites</string>
+    <!-- Detalle -->
+    <string name="btn_add_favorite">Añadir a Favoritos</string>
+    <string name="btn_remove_favorite">Quitar de Favoritos</string>
 
-    <!-- Menu -->
-    <string name="menu_favorites">Favorites</string>
-    <string name="menu_movies">Movies</string>
+    <!-- Menú -->
+    <string name="menu_favorites">Favoritos</string>
+    <string name="menu_movies">Películas</string>
     <string name="menu_series">Series</string>
-    <string name="menu_logout">Logout</string>
+    <string name="menu_logout">Cerrar Sesión</string>
+
+    <!-- Diálogo Salida -->
+    <string name="dialog_exit_title">Salir</string>
+    <string name="dialog_exit_message">¿Seguro que quieres salir de la aplicación?</string>
+    <string name="dialog_yes">Sí</string>
+    <string name="dialog_no">No</string>
 </resources>

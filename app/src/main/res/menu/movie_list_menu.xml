@@ -3,15 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_toggle_favorites"
-        android:title="Favorites"
+        android:title="Favoritos"
         android:icon="@android:drawable/btn_star"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_go_to_series"
-        android:title="Series"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_logout"
-        android:title="Logout"
+        android:title="Cerrar Sesión"
         app:showAsAction="never" />
 </menu>

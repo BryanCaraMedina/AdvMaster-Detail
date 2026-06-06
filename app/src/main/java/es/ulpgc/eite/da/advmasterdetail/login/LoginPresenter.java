@@ -23,7 +23,6 @@ public class LoginPresenter implements LoginContract.Presenter {
     public void onCreateCalled() {
         state = new LoginState();
         
-        // Auto-login if session exists
         if (sessionManager.isLoggedIn()) {
             UserEntity user = new UserEntity(sessionManager.getUsername(), "");
             user.id = sessionManager.getUserId();
@@ -46,9 +45,9 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void onLoginButtonClicked(String username, String password) {
+    public void onLoginButtonClicked(String username, String password, boolean goToMovies) {
         if (username.trim().isEmpty() || password.trim().isEmpty()) {
-            view.get().showErrorMessage("Please enter username and password");
+            view.get().showErrorMessage("Por favor, introduce usuario y contraseña");
             return;
         }
 
@@ -58,9 +57,13 @@ public class LoginPresenter implements LoginContract.Presenter {
                 if (success) {
                     sessionManager.createSession(user.id, user.username);
                     mediator.setUser(user);
-                    view.get().navigateToMovieListScreen();
+                    if(goToMovies){
+                        view.get().navigateToMovieListScreen();
+                    } else {
+                        view.get().navigateToSerieListScreen();
+                    }
                 } else {
-                    view.get().showErrorMessage("Login failed. Check username and password.");
+                    view.get().showErrorMessage("Error al iniciar sesión. Revisa tus credenciales.");
                 }
             }
         });
@@ -72,10 +75,14 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void onSkipLoginButtonClicked() {
+    public void onSkipLoginButtonClicked(boolean goToMovies) {
         mediator.setUser(null);
         sessionManager.logout();
-        view.get().navigateToMovieListScreen();
+        if(goToMovies){
+            view.get().navigateToMovieListScreen();
+        } else {
+            view.get().navigateToSerieListScreen();
+        }
     }
 
     @Override

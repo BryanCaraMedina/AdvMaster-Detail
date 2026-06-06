@@ -17,7 +17,7 @@ import es.ulpgc.eite.da.advmasterdetail.data.UserSerieCrossRef;
     UserEntity.class,
     UserMovieCrossRef.class,
     UserSerieCrossRef.class
-}, version = 1, exportSchema = false)
+}, version = 7000, exportSchema = false)
 public abstract class CatalogDatabase extends RoomDatabase {
 
     private static CatalogDatabase INSTANCE;
@@ -31,8 +31,10 @@ public abstract class CatalogDatabase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(
                     context.getApplicationContext(),
                     CatalogDatabase.class,
-                    "catalog.db"
-            ).build();
+                    "catalog_perfect_v7000.db"
+            )
+            .fallbackToDestructiveMigration()
+            .build();
         }
         return INSTANCE;
     }

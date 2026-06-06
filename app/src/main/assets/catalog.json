@@ -1,10 +1,54 @@
 {
   "movies": [
-    {"id": 1, "title": "Inception", "description": "Sueños dentro de sueños", "imageUrl": "https://picsum.photos/id/1/200/300"},
-    {"id": 2, "title": "The Matrix", "description": "Realidad simulada", "imageUrl": "https://picsum.photos/id/2/200/300"}
+    {
+      "id": 1,
+      "title": "Inception",
+      "description": "Dom Cobb es un ladrón capaz de adentrarse en los sueños de los demás y conocer sus secretos.",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg"
+    },
+    {
+      "id": 2,
+      "title": "The Matrix",
+      "description": "Un programador de computación descubre que todo lo que conoce es una simulación creada por máquinas.",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Interstellar",
+      "description": "Un grupo de científicos y exploradores viajan a través de un agujero de gusano para encontrar un nuevo hogar.",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+    },
+    {
+      "id": 4,
+      "title": "The Dark Knight",
+      "description": "Batman se enfrenta al Joker, que quiere sembrar el caos en Gotham City.",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg"
+    }
   ],
   "series": [
-    {"id": 1, "title": "Stranger Things", "description": "Misterio en Hawkins", "imageUrl": "https://picsum.photos/id/10/200/300"},
-    {"id": 2, "title": "Breaking Bad", "description": "Profesor de química se vuelve narco", "imageUrl": "https://picsum.photos/id/11/200/300"}
+    {
+      "id": 101,
+      "title": "Stranger Things",
+      "description": "Un niño desaparece y sus amigos descubren un misterio que involucra experimentos secretos.",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMjE4NjA1NTEyM15BMl5BanBnXkFtZTgwNzYwNjM5NzE@._V1_.jpg"
+    },
+    {
+      "id": 102,
+      "title": "Breaking Bad",
+      "description": "Un profesor de química comienza a cocinar metanfetamina para asegurar el futuro de su familia.",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTNjM2Y2NDQtZDgxMi00M2QzLTg2N2ItNmIzMDliZWM1OTdkXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Game of Thrones",
+      "description": "Familias nobles luchan por el control de los Siete Reinos.",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGIwMi00MWNmLThlMDItZjk1Y2Y2N2I0YzA2XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Better Call Saul",
+      "description": "La evolución del abogado Jimmy McGill antes de convertirse en Saul Goodman.",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BZDA4YmUyN2EtN2U5OS00NWUxLWEyNWVjN2EwZDQxNjU5ZDQyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+    }
   ]
 }
