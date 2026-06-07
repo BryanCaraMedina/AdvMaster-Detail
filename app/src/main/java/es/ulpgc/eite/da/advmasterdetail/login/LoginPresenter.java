@@ -24,10 +24,17 @@ public class LoginPresenter implements LoginContract.Presenter {
         state = new LoginState();
         
         if (sessionManager.isLoggedIn()) {
+            // Solo auto-redirigir si es el inicio en frío (usuario en mediador es null)
+            // Si volvemos atrás desde las listas, el usuario ya estará en el mediador.
+            boolean shouldAutoNavigate = (mediator.getUser() == null);
+
             UserEntity user = new UserEntity(sessionManager.getUsername(), "");
             user.id = sessionManager.getUserId();
             mediator.setUser(user);
-            view.get().navigateToMovieListScreen();
+            
+            if (shouldAutoNavigate) {
+                view.get().navigateToMovieListScreen();
+            }
         }
     }
 

@@ -41,6 +41,11 @@ public interface SerieListContract {
         void navigateToLoginScreen();
 
         /**
+         * Closes the current view.
+         */
+        void finishView();
+
+        /**
          * Updates the title of the toolbar based on the filter state.
          * @param showingFavorites True if only favorites are shown.
          */
@@ -84,6 +89,11 @@ public interface SerieListContract {
          * Handles the click on the "Logout" menu item.
          */
         void onLogoutMenuClicked();
+
+        /**
+         * Handles the back button press.
+         */
+        void onBackPressed();
 
         void onCreateCalled();
         void onRecreateCalled();

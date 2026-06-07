@@ -78,6 +78,16 @@ public class MovieListPresenter implements MovieListContract.Presenter {
     }
 
     @Override
+    public void onBackPressed() {
+        if (state.showingFavorites) {
+            state.showingFavorites = false;
+            fetchMovieListData();
+        } else {
+            view.get().finishView();
+        }
+    }
+
+    @Override
     public void selectMovieData(MovieEntity item) {
         mediator.setMovie(item);
         view.get().navigateToMovieDetailScreen();

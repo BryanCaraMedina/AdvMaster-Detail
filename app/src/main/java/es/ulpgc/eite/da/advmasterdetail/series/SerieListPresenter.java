@@ -78,6 +78,16 @@ public class SerieListPresenter implements SerieListContract.Presenter {
     }
 
     @Override
+    public void onBackPressed() {
+        if (state.showingFavorites) {
+            state.showingFavorites = false;
+            fetchSerieListData();
+        } else {
+            view.get().finishView();
+        }
+    }
+
+    @Override
     public void selectSerieData(SerieEntity item) {
         mediator.setSerie(item);
         view.get().navigateToSerieDetailScreen();

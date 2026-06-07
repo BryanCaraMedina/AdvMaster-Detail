@@ -1,6 +1,8 @@
 package es.ulpgc.eite.da.advmasterdetail.movies;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import es.ulpgc.eite.da.advmasterdetail.R;
@@ -23,6 +26,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
     private MovieListAdapter listAdapter;
     private TextView emptyView;
     private Button btnSwitch;
+    private boolean isShowingFavorites;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,12 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
 
     @Override
     public void onBackPressed() {
-        navigateToLoginScreen();
+        presenter.onBackPressed();
+    }
+
+    @Override
+    public void finishView() {
+        finish();
     }
 
     @Override
@@ -74,6 +83,21 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem favoriteItem = menu.findItem(R.id.action_toggle_favorites);
+        if (favoriteItem != null) {
+            Drawable icon = favoriteItem.getIcon();
+            if (icon != null) {
+                int color = isShowingFavorites ? 
+                    ContextCompat.getColor(this, R.color.colorFavoriteActive) : 
+                    ContextCompat.getColor(this, R.color.colorFavoriteInactive);
+                icon.mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+            }
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_toggle_favorites) {
@@ -95,6 +119,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieListCon
     @Override
     public void displayMovieListData(MovieListViewModel viewModel) {
         runOnUiThread(() -> {
+            this.isShowingFavorites = viewModel.showingFavorites;
+            invalidateOptionsMenu();
+
             listAdapter.setItems(viewModel.movies);
             
             if (viewModel.movies == null || viewModel.movies.isEmpty()) {
