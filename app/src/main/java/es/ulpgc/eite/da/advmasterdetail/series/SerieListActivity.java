@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,18 +47,7 @@ public class SerieListActivity extends AppCompatActivity implements SerieListCon
 
     @Override
     public void onBackPressed() {
-        showExitDialog();
-    }
-
-    private void showExitDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.dialog_exit_title)
-                .setMessage(R.string.dialog_exit_message)
-                .setPositiveButton(R.string.dialog_yes, (dialog, which) -> {
-                    finishAffinity();
-                })
-                .setNegativeButton(R.string.dialog_no, null)
-                .show();
+        navigateToLoginScreen();
     }
 
     @Override
@@ -138,6 +126,7 @@ public class SerieListActivity extends AppCompatActivity implements SerieListCon
     @Override
     public void navigateToLoginScreen() {
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
