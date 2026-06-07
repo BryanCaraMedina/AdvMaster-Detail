@@ -8,7 +8,6 @@ import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtP
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -28,40 +27,93 @@ public class EspressoTests {
     public ActivityScenarioRule<LoginActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(LoginActivity.class);
 
+    // --- PRUEBAS DE PELÍCULAS ---
+
     @Test
-    public void espressoTests() {
-        // --- 1. PROBAR PELÍCULAS (GUEST) ---
+    public void pruebaAccesoPeliculasComoInvitado() {
         onView(withId(R.id.skip_login_button)).perform(click());
+        onView(withId(R.id.movie_recycler)).check(matches(isDisplayed()));
+    }
 
-        // Ver detalle de la primera película y volver
+    @Test
+    public void pruebaVerDetalleDePeliculaYRegresarALista() {
+        onView(withId(R.id.skip_login_button)).perform(click());
         onView(withId(R.id.movie_recycler)).perform(actionOnItemAtPosition(0, click()));
-        pressBack(); 
-        
-        // Volver al Login desde la lista (1 solo back porque en modo invitado no hay favoritos)
-        pressBack(); 
+        onView(withId(R.id.movie_title)).check(matches(isDisplayed()));
+        pressBack();
+        onView(withId(R.id.movie_recycler)).check(matches(isDisplayed()));
+    }
 
-        // --- 2. PROBAR SERIES (GUEST) ---
+    @Test
+    public void pruebaVolverAlLoginDesdeListaPeliculas() {
+        onView(withId(R.id.skip_login_button)).perform(click());
+        pressBack();
+        onView(withId(R.id.login_button)).check(matches(isDisplayed()));
+    }
+
+    // --- PRUEBAS DE SERIES ---
+
+    @Test
+    public void pruebaAccesoSeriesComoInvitado() {
         onView(withId(R.id.radio_series)).perform(click());
         onView(withId(R.id.skip_login_button)).perform(click());
+        onView(withId(R.id.serie_recycler)).check(matches(isDisplayed()));
+    }
 
-        // Ver detalle de una serie y volver
+    @Test
+    public void pruebaVerDetalleDeSerieYRegresarALista() {
+        onView(withId(R.id.radio_series)).perform(click());
+        onView(withId(R.id.skip_login_button)).perform(click());
         onView(withId(R.id.serie_recycler)).perform(actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.serie_title)).check(matches(isDisplayed()));
         pressBack();
+        onView(withId(R.id.serie_recycler)).check(matches(isDisplayed()));
+    }
 
-        // Probar cambio directo de listas (Series -> Películas)
+    @Test
+    public void pruebaVolverAlLoginDesdeListaSeries() {
+        onView(withId(R.id.radio_series)).perform(click());
+        onView(withId(R.id.skip_login_button)).perform(click());
+        pressBack();
+        onView(withId(R.id.login_button)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void pruebaCambiarDeSeriesAPeliculasDirectamente() {
+        onView(withId(R.id.radio_series)).perform(click());
+        onView(withId(R.id.skip_login_button)).perform(click());
         onView(withId(R.id.btn_switch_to_movies)).perform(click());
-        
-        // Volver al Login
-        pressBack();
+        onView(withId(R.id.movie_recycler)).check(matches(isDisplayed()));
+    }
 
-        // --- 3. PROBAR REGISTRO ---
+    // --- PRUEBAS DE REGISTRO ---
+
+    @Test
+    public void pruebaNavegacionAPantallaDeRegistro() {
         onView(withId(R.id.go_to_register_button)).perform(click());
-        pressBack(); // Volver al Login
+        onView(withId(R.id.register_button)).check(matches(isDisplayed()));
+    }
 
-        // --- 4. PROBAR DIÁLOGO DE SALIDA EN LOGIN ---
-        // Pulsamos atrás en el Login para ver el mensaje que pediste
-        pressBack(); 
+    @Test
+    public void pruebaRegresarAlLoginDesdeRegistro() {
+        onView(withId(R.id.go_to_register_button)).perform(click());
+        pressBack();
+        onView(withId(R.id.login_button)).check(matches(isDisplayed()));
+    }
+
+    // --- PRUEBAS DE SALIDA (DIÁLOGOS) ---
+
+    @Test
+    public void pruebaMostrarDialogoDeSalidaEnLogin() {
+        pressBack();
         onView(withText("Salir")).check(matches(isDisplayed()));
-        onView(withText("No")).perform(click()); // Cancelamos para que el test termine limpiamente
+        onView(withText("¿Seguro que quieres salir de la aplicación?")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void pruebaCancelarDialogoDeSalidaMantieneEnLogin() {
+        pressBack();
+        onView(withText("No")).perform(click());
+        onView(withId(R.id.login_button)).check(matches(isDisplayed()));
     }
 }
